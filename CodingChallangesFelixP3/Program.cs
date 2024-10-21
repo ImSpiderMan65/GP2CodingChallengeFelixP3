@@ -3,65 +3,111 @@ class Challenges
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Welcome to my challange program. there will be a variety of different functions to choose from. Please pick one.");
+        Console.WriteLine("Welcome to my challenge program! There will be a variety of different functions to choose from. Please pick one.");
 
-        Console.WriteLine("Today we are going to use the number adder called sum. Please Input two numbers for us to add. \n");
+        while (true)
+        {
+            Console.WriteLine("\nAvailable Functions:");
+            Console.WriteLine("1: Sum two numbers");
+            Console.WriteLine("2: Convert minutes to seconds");
+            Console.WriteLine("3: Add one to a number");
+            Console.WriteLine("4: Calculate power from voltage and current");
+            Console.WriteLine("5: Age in days");
+            Console.WriteLine("6: Calculate the area of a triangle");
+            Console.WriteLine("7: Check if a number is less than or equal to zero");
+            Console.WriteLine("8: Exit");
+            Console.Write("Enter the number of your choice: ");
 
-        var number1 = Console.ReadLine();
-        int number1int = int.Parse(number1);
+            var choice = Console.ReadLine();
 
-        Console.WriteLine("Awesome, please put a second numero");
-
-        var number2 =  Console.ReadLine();
-        int number2int = int.Parse(number2);
-
-        Console.WriteLine("The sum of the numbers: "  + number1 + " and the number " + number2 + " is equal to: " + Sum(number1int, number2int) + "\n");
-        Sum(number1int, number2int);
-
-        Console.WriteLine("Lets try converting minutes to seconds. \nGive me a number to convert from minutes to seconds");
-        var number3 = Console.ReadLine();
-        int number3int = int.Parse(number3);
-
-        Console.WriteLine(number3 + " Minute(s) converted into seconds is " + Convert(number3int) + "\n");
-
-        Console.WriteLine("Sweet lets try to add 1 to a number. Please pick a number.  \n");
-
-        var number4 = Console.ReadLine();
-        int number4int = int.Parse(number4);  
-        Console.WriteLine("Ok the number you have put plus 1 is " + AddOne(number4int) + "\n");
-
-        Console.WriteLine("Today we are make a function that takes voltage and current and returns the calculated power.");
-        Console.WriteLine("please enter a number for a voltage :) \n");
-        var voltage = Console.ReadLine();
-        int voltageint = int.Parse(voltage);
-        Console.WriteLine("Cool now put in a number for a current");
-        var current = Console.ReadLine();
-        int currentint = int.Parse(current);   
-        Console.WriteLine(" The calculated power of these numbers is " + Circuit(voltageint, currentint) + "\n");
-
-        Console.WriteLine(" Now we will tell you your age in days. \n");
-        var age = Console.ReadLine();
-        int ageint = int.Parse(age);
-
-        Console.WriteLine(" Cool your age in days is " + Ageing(ageint) + "\n");
-
-        Console.WriteLine("Today we are going to make a function that takes the base and height of a triangle and returns its area. \nPlease insert a variable foe the base");
-        var basicbase = Console.ReadLine();
-        int basicbaseint = int.Parse(basicbase);
-        Console.WriteLine("Thanks now put in a height");
-        var Height = Console.ReadLine();
-        int Heightint = int.Parse(Height);
-        Console.WriteLine(" Cool the area is " + Area(basicbaseint, basicbaseint) + "\n");
-
-        Console.WriteLine("Today we are going to see if a number is less than 0 where it will say true if its equal or less than 0 and false if it isnt " + "\n" + "Please type in a number");
-        var lessthn = Console.ReadLine();
-        int lessthnint = int.Parse(lessthn);
-        Console.WriteLine(Lessthan0(lessthnint));
-
-        
-
+            switch (choice)
+            {
+                case "1":
+                    PerformSum();
+                    break;
+                case "2":
+                    PerformConversion();
+                    break;
+                case "3":
+                    PerformAddOne();
+                    break;
+                case "4":
+                    PerformCircuit();
+                    break;
+                case "5":
+                    PerformAgeing();
+                    break;
+                case "6":
+                    PerformArea();
+                    break;
+                case "7":
+                    PerformLessthan0();
+                    break;
+                case "8":
+                    Console.WriteLine("Thank you for using the program. Goodbye!");
+                    return; // Exit the program
+                default:
+                    Console.WriteLine("Error: The function you requested does not exist. Please choose a valid option.");
+                    break;
+            }
+        }
     }
 
+    public static void PerformSum()
+    {
+        Console.WriteLine("\nPlease input two numbers to add.");
+        Console.Write("First number: ");
+        int number1 = int.Parse(Console.ReadLine());
+        Console.Write("Second number: ");
+        int number2 = int.Parse(Console.ReadLine());
+        Console.WriteLine($"The sum of {number1} and {number2} is: {Sum(number1, number2)}\n");
+    }
+
+    public static void PerformConversion()
+    {
+        Console.WriteLine("\nGive me a number to convert from minutes to seconds.");
+        int number3 = int.Parse(Console.ReadLine());
+        Console.WriteLine($"{number3} Minute(s) converted into seconds is: {Convert(number3)}\n");
+    }
+
+    public static void PerformAddOne()
+    {
+        Console.WriteLine("\nPlease pick a number to add 1 to.");
+        int number4 = int.Parse(Console.ReadLine());
+        Console.WriteLine($"The number you have chosen plus 1 is: {AddOne(number4)}\n");
+    }
+
+    public static void PerformCircuit()
+    {
+        Console.WriteLine("\nPlease enter a number for voltage.");
+        int voltage = int.Parse(Console.ReadLine());
+        Console.WriteLine("Now put in a number for current.");
+        int current = int.Parse(Console.ReadLine());
+        Console.WriteLine($"The calculated power is: {Circuit(voltage, current)}\n");
+    }
+
+    public static void PerformAgeing()
+    {
+        Console.WriteLine("\nPlease enter your age.");
+        int age = int.Parse(Console.ReadLine());
+        Console.WriteLine($"Your age in days is: {Ageing(age)}\n");
+    }
+
+    public static void PerformArea()
+    {
+        Console.WriteLine("\nPlease insert a value for the base of the triangle.");
+        int baseLength = int.Parse(Console.ReadLine());
+        Console.WriteLine("Now put in a height.");
+        int height = int.Parse(Console.ReadLine());
+        Console.WriteLine($"The area of the triangle is: {Area(baseLength, height)}\n");
+    }
+
+    public static void PerformLessthan0()
+    {
+        Console.WriteLine("\nPlease type in a number to check if it's less than or equal to zero.");
+        int number = int.Parse(Console.ReadLine());
+        Console.WriteLine(Lessthan0(number) ? "True: The number is less than or equal to zero." : "False: The number is greater than zero.");
+    }
 
     public static int Sum(int number1, int number2)
     {
@@ -73,9 +119,9 @@ class Challenges
         return number * 60;
     }
 
-    public static int AddOne(int number4)
+    public static int AddOne(int number)
     {
-        return number4 + 1;
+        return number + 1;
     }
 
     public static int Circuit(int voltage, int current)
@@ -88,20 +134,13 @@ class Challenges
         return age * 365;
     }
 
-    public static float Area(int basicbase, float Height)
+    public static float Area(int baseLength, int height)
     {
-        return basicbase * Height / 2;
+        return (baseLength * height) / 2f;
     }
 
-    public static bool Lessthan0(int lessthn)
+    public static bool Lessthan0(int number)
     {
-        if (lessthn <= 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return number <= 0;
     }
 }
